@@ -3,7 +3,13 @@ import { useState } from "react";
 import { Mail, MapPin, CheckCircle2, Send } from "lucide-react";
 import { GithubIcon } from "./GithubIcon";
 
-export default function Contact({ profileData }: { profileData: any }) {
+export default function Contact({
+  profileData,
+  t,
+}: {
+  profileData: any;
+  t: any;
+}) {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -29,9 +35,9 @@ export default function Contact({ profileData }: { profileData: any }) {
           <Mail size={22} />
         </div>
         <div>
-          <h2 className="text-2xl sm:text-3xl font-bold">Me Contacter</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold">{t.contact.title}</h2>
           <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-            Un projet en vue ? Discutons-en !
+            {t.contact.subtitle}
           </p>
         </div>
       </div>
@@ -39,11 +45,9 @@ export default function Contact({ profileData }: { profileData: any }) {
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
         <div className="lg:col-span-2 p-8 rounded-3xl border flex flex-col justify-between space-y-6 bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none">
           <div className="space-y-6">
-            <h3 className="text-xl font-bold">Coordonnées Directes</h3>
+            <h3 className="text-xl font-bold">{t.contact.directTitle}</h3>
             <p className="text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-              N'hésitez pas à me contacter directement par e-mail ou via les
-              réseaux sociaux pour toute opportunité de collaboration ou de
-              projet sur-mesure.
+              {t.contact.directDesc}
             </p>
 
             <div className="space-y-4">
@@ -56,7 +60,7 @@ export default function Contact({ profileData }: { profileData: any }) {
                 </div>
                 <div>
                   <span className="text-xs text-slate-400 block">
-                    Email direct
+                    {t.contact.emailLabel}
                   </span>
                   <span className="text-sm font-medium">
                     {profileData.email}
@@ -75,7 +79,7 @@ export default function Contact({ profileData }: { profileData: any }) {
                 </div>
                 <div>
                   <span className="text-xs text-slate-400 block">
-                    GitHub Profile
+                    {t.contact.githubLabel}
                   </span>
                   <span className="text-sm font-medium">
                     @alexissengangabo07
@@ -89,7 +93,7 @@ export default function Contact({ profileData }: { profileData: any }) {
                 </div>
                 <div>
                   <span className="text-xs text-slate-400 block">
-                    Localisation
+                    {t.contact.locationLabel}
                   </span>
                   <span className="text-sm font-medium">
                     {profileData.location}
@@ -100,7 +104,7 @@ export default function Contact({ profileData }: { profileData: any }) {
           </div>
 
           <div className="p-4 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-xs text-indigo-400">
-            ⚡ Temps de réponse moyen : <strong>Moins de 24h</strong>
+            ⚡ {t.contact.responseTime}
           </div>
         </div>
 
@@ -110,10 +114,9 @@ export default function Contact({ profileData }: { profileData: any }) {
               <div className="p-4 rounded-full bg-emerald-500/20 text-emerald-400 animate-bounce">
                 <CheckCircle2 size={40} />
               </div>
-              <h3 className="text-2xl font-bold">Message Envoyé !</h3>
+              <h3 className="text-2xl font-bold">{t.contact.successTitle}</h3>
               <p className="text-sm text-slate-400 max-w-md">
-                Merci pour votre message. Alexis (Dr. Code) vous recontactera
-                dans les plus brefs délais.
+                {t.contact.successDesc}
               </p>
             </div>
           ) : (
@@ -121,7 +124,7 @@ export default function Contact({ profileData }: { profileData: any }) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                    Nom Complet
+                    {t.contact.nameLabel}
                   </label>
                   <input
                     type="text"
@@ -130,13 +133,13 @@ export default function Contact({ profileData }: { profileData: any }) {
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
                     }
-                    placeholder="Ex: Jean Dupont"
+                    placeholder={t.contact.namePlaceholder}
                     className="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white"
                   />
                 </div>
                 <div className="space-y-2">
                   <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                    Adresse Email
+                    {t.contact.emailInputLabel}
                   </label>
                   <input
                     type="email"
@@ -145,7 +148,7 @@ export default function Contact({ profileData }: { profileData: any }) {
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    placeholder="jean@example.com"
+                    placeholder={t.contact.emailPlaceholder}
                     className="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white"
                   />
                 </div>
@@ -153,7 +156,7 @@ export default function Contact({ profileData }: { profileData: any }) {
 
               <div className="space-y-2">
                 <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                  Votre Message
+                  {t.contact.messageLabel}
                 </label>
                 <textarea
                   rows={5}
@@ -162,7 +165,7 @@ export default function Contact({ profileData }: { profileData: any }) {
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }
-                  placeholder="Décrivez votre projet ou votre besoin..."
+                  placeholder={t.contact.messagePlaceholder}
                   className="w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white"
                 ></textarea>
               </div>
@@ -171,7 +174,7 @@ export default function Contact({ profileData }: { profileData: any }) {
                 type="submit"
                 className="w-full py-4 rounded-xl text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-500 shadow-xl shadow-indigo-600/30 transition-all flex items-center justify-center gap-2 active:scale-[0.99]"
               >
-                <Send size={16} /> Envoyer le message
+                <Send size={16} /> {t.contact.sendBtn}
               </button>
             </form>
           )}

@@ -1,6 +1,12 @@
 import { Clock, Building2 } from "lucide-react";
 
-export default function Experience({ experiences }: { experiences: any[] }) {
+export default function Experience({
+  experiences,
+  t,
+}: {
+  experiences: any[];
+  t: any;
+}) {
   return (
     <section id="experience" className="space-y-8">
       <div className="flex items-center gap-3">
@@ -9,10 +15,10 @@ export default function Experience({ experiences }: { experiences: any[] }) {
         </div>
         <div>
           <h2 className="text-2xl sm:text-3xl font-bold">
-            Parcours & Expériences
+            {t.experience.title}
           </h2>
           <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-            Mon itinéraire professionnel
+            {t.experience.subtitle}
           </p>
         </div>
       </div>

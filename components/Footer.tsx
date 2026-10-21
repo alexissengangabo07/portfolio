@@ -1,8 +1,13 @@
 "use client";
-
 import { useState, useEffect } from "react";
 
-export default function Footer({ profileData }: { profileData: any }) {
+export default function Footer({
+  profileData,
+  t,
+}: {
+  profileData: any;
+  t: any;
+}) {
   const [year, setYear] = useState(2026);
 
   useEffect(() => {
@@ -24,7 +29,9 @@ export default function Footer({ profileData }: { profileData: any }) {
             <p className="font-semibold text-slate-800 dark:text-slate-200">
               {profileData.name} ({profileData.alias})
             </p>
-            <p>© {year} KivuNex. Tous droits réservés.</p>
+            <p>
+              © {year} KivuNex. {t.footer.rights}
+            </p>
           </div>
         </div>
 

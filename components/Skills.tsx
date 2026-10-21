@@ -10,7 +10,6 @@ import {
   Database,
 } from "lucide-react";
 
-// Dictionnaire pour lier le nom de l'icône au composant Lucide réel
 const iconMap: Record<string, any> = {
   Code2,
   Layers,
@@ -21,7 +20,7 @@ const iconMap: Record<string, any> = {
   Database,
 };
 
-export default function Skills({ skills }: { skills: any[] }) {
+export default function Skills({ skills, t }: { skills: any[]; t: any }) {
   const [activeSkillCategory, setActiveSkillCategory] = useState("all");
 
   const filteredSkills =
@@ -37,22 +36,20 @@ export default function Skills({ skills }: { skills: any[] }) {
             <Code2 size={22} />
           </div>
           <div>
-            <h2 className="text-2xl sm:text-3xl font-bold">
-              Stack & Compétences
-            </h2>
+            <h2 className="text-2xl sm:text-3xl font-bold">{t.skills.title}</h2>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-              Technologies et outils maîtrisés
+              {t.skills.subtitle}
             </p>
           </div>
         </div>
 
         <div className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-slate-100 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 text-xs font-semibold">
           {[
-            { id: "all", label: "Tout" },
-            { id: "frontend", label: "Frontend" },
-            { id: "backend", label: "Backend" },
-            { id: "database", label: "Bases de données" },
-            { id: "tools", label: "Outils" },
+            { id: "all", label: t.skills.all },
+            { id: "frontend", label: t.skills.frontend },
+            { id: "backend", label: t.skills.backend },
+            { id: "database", label: t.skills.database },
+            { id: "tools", label: t.skills.tools },
           ].map((tab) => (
             <button
               key={tab.id}

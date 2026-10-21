@@ -1,8 +1,17 @@
 export default function Stats({
   stats,
+  t,
 }: {
-  stats: Array<{ label: string; value: string }>;
+  stats: Array<{ value: string }>;
+  t: any;
 }) {
+  const labels = [
+    t.stats.exp,
+    t.stats.projects,
+    t.stats.quality,
+    t.stats.clients,
+  ];
+
   return (
     <section className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 sm:p-8 rounded-3xl border bg-white dark:bg-slate-900/50 border-slate-200 dark:border-slate-800/80 shadow-lg shadow-slate-100 dark:shadow-none">
       {stats.map((stat, idx) => (
@@ -11,7 +20,7 @@ export default function Stats({
             {stat.value}
           </div>
           <div className="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400">
-            {stat.label}
+            {labels[idx]}
           </div>
         </div>
       ))}

@@ -1,8 +1,15 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Sun, Moon, ArrowUpRight, Menu, X } from "lucide-react";
+import { Sun, Moon, ArrowUpRight, Menu, X, Globe } from "lucide-react";
 
-export default function Navbar({ profileData }: { profileData: any }) {
+interface NavbarProps {
+  profileData: any;
+  lang: string;
+  setLang: (lang: string) => void;
+  t: any;
+}
+
+export default function Navbar({ profileData, lang, setLang, t }: NavbarProps) {
   const [darkMode, setDarkMode] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -63,21 +70,23 @@ export default function Navbar({ profileData }: { profileData: any }) {
                 onClick={() => scrollToSection(item)}
                 className="capitalize transition-colors hover:text-indigo-500 text-slate-600 dark:text-slate-300"
               >
-                {item === "about"
-                  ? "À propos"
-                  : item === "skills"
-                    ? "Compétences"
-                    : item === "projects"
-                      ? "Projets"
-                      : item === "experience"
-                        ? "Parcours"
-                        : "Contact"}
+                {t.nav[item]}
               </button>
             ),
           )}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Language Switcher */}
+          <button
+            onClick={() => setLang(lang === "en" ? "fr" : "en")}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-full border text-xs font-semibold transition-all bg-slate-100 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700"
+            title="Changer de langue / Change language"
+          >
+            <Globe size={14} className="text-indigo-500" />
+            <span>{lang.toUpperCase()}</span>
+          </button>
+
           <button
             onClick={toggleDarkMode}
             className="p-2.5 rounded-full border transition-all bg-slate-100 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700"
@@ -90,7 +99,7 @@ export default function Navbar({ profileData }: { profileData: any }) {
             onClick={() => scrollToSection("contact")}
             className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-indigo-600 text-white shadow-md shadow-indigo-600/30 hover:bg-indigo-500 transition-all active:scale-95"
           >
-            Me contacter
+            {t.nav.cta}
             <ArrowUpRight size={14} />
           </button>
 
@@ -113,15 +122,7 @@ export default function Navbar({ profileData }: { profileData: any }) {
                   onClick={() => scrollToSection(item)}
                   className="text-left py-2 px-3 rounded-lg text-sm font-medium transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200"
                 >
-                  {item === "about"
-                    ? "À propos"
-                    : item === "skills"
-                      ? "Compétences"
-                      : item === "projects"
-                        ? "Projets"
-                        : item === "experience"
-                          ? "Parcours"
-                          : "Contact"}
+                  {t.nav[item]}
                 </button>
               ),
             )}
