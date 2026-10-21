@@ -481,7 +481,7 @@ export default function App() {
                   : "bg-white border-slate-200 text-slate-800 hover:bg-slate-100 shadow-sm"
               }`}
             >
-              <Github size={18} />
+              <GithubIcon className="w-4 h-4" />
               GitHub
             </a>
           </div>
@@ -777,7 +777,7 @@ export default function App() {
                             : "border-slate-200 hover:bg-slate-100 text-slate-700"
                         }`}
                       >
-                        <Github size={14} /> Code Source
+                        <GithubIcon className="w-4 h-4" /> Code Source
                       </a>
                       {project.live !== "#" && (
                         <a
@@ -934,7 +934,7 @@ export default function App() {
                     }`}
                   >
                     <div className="p-3 rounded-xl bg-slate-800 text-white border border-slate-700">
-                      <Github size={18} />
+                      <GithubIcon className="w-4 h-4" />
                     </div>
                     <div>
                       <span className="text-xs text-slate-400 block">
