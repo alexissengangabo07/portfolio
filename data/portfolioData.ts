@@ -13,8 +13,7 @@ export const profileData = {
   alias: "Dr. Code",
   role: "Full-Stack Web Developer & Founder at KivuNex",
   location: "Goma, DRC",
-  photo:
-    "https://alexissenga.vercel.app/static/media/alexis.83835ea58cc34f55634d.jpeg",
+  photo: "/alexis.jpeg",
   github: "https://github.com/alexissengangabo07",
   email: "alexxngabo@gmail.com",
   about:
