@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
@@ -21,8 +21,22 @@ export default function Page() {
   // Langue par défaut : Anglais ("en")
   const [lang, setLang] = useState("en");
 
+  // 1. Charger la langue sauvegardée dans localStorage au démarrage
+  useEffect(() => {
+    const savedLang = localStorage.getItem("portfolio_lang");
+    if (savedLang) {
+      setLang(savedLang);
+    }
+  }, []);
+
+  // 2. Fonction pour changer la langue et persister la valeur dans localStorage
+  const handleSetLang = (newLang: string) => {
+    setLang(newLang);
+    localStorage.setItem("portfolio_lang", newLang);
+  };
+
   // Sélection du dictionnaire actif
-  const t = dict[lang as keyof typeof dict];
+  const t = dict[lang as keyof typeof dict] || dict.en;
 
   return (
     <div className="min-h-screen font-sans transition-colors duration-300 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
@@ -33,7 +47,12 @@ export default function Page() {
         <div className="absolute -bottom-40 left-1/3 w-96 h-96 rounded-full blur-3xl opacity-15 bg-emerald-300 dark:bg-emerald-600"></div>
       </div>
 
-      <Navbar profileData={profileData} lang={lang} setLang={setLang} t={t} />
+      <Navbar
+        profileData={profileData}
+        lang={lang}
+        setLang={handleSetLang}
+        t={t}
+      />
 
       <main className="pt-28 pb-20 max-w-6xl mx-auto px-4 sm:px-6 space-y-28">
         <Hero profileData={profileData} t={t} />
