@@ -19,7 +19,7 @@ export const profileData = {
   about:
     "Développeur Web Full-Stack passionné et fondateur de KivuNex, spécialisé dans la conception d'applications web scalables, d'APIs REST robustes et de solutions logicielles sur mesure. Fort d'une expertise reconnue sur l'écosystème JS/TypeScript (React, Next.js, Node.js, Express) et les bases de données SQL/NoSQL.",
   stats: [
-    { label: "Années d'Expérience", value: "4+" },
+    { label: "Années d'Expérience", value: "5+" },
     { label: "Projets Déployés", value: "20+" },
     { label: "Code Quality", value: "100%" },
     { label: "Clients & Partenaires", value: "15+" },
@@ -94,13 +94,13 @@ export const projects = [
   },
   {
     id: "easychat",
-    title: "MERN Real-Time Chat App (easyChat)",
+    title: "Real-Time Chat App (easyChat)",
     category: "fullstack",
     description:
       "Application de messagerie instantanée en temps réel basée sur la pile MERN et Socket.io. Comprend le statut d'envoi, l'authentification JWT sécurisée et une interface fluide et réactive.",
     tags: ["React", "Node.js", "Express", "MongoDB", "Socket.io", "Tailwind"],
     github: "https://github.com/alexissengangabo07/easyChat",
-    live: "#",
+    live: "https://easy-chat.vercel.app/",
     featured: true,
     image:
       "https://images.unsplash.com/photo-1611606063065-ee7946f0787a?auto=format&fit=crop&w=800&q=80",
@@ -120,13 +120,13 @@ export const projects = [
   },
   {
     id: "crud-dashboard",
-    title: "CRUD Express & EJS Admin Dashboard",
+    title: "Company manager & Admin Dashboard",
     category: "backend",
     description:
       "Panneau de gestion back-office construit avec Express.js et le moteur de rendu EJS, connecté à MySQL pour la gestion dynamique des données métier.",
     tags: ["Express.js", "EJS", "MySQL", "Bootstrap / Tailwind"],
     github: "https://github.com/alexissengangabo07",
-    live: "#",
+    live: "https://gda-dashboard.netlify.app/",
     featured: false,
     image:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
