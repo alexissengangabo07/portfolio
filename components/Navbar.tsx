@@ -13,17 +13,34 @@ export default function Navbar({ profileData, lang, setLang, t }: NavbarProps) {
   const [darkMode, setDarkMode] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // 1. Initialiser le thème au chargement à partir du localStorage
   useEffect(() => {
-    document.documentElement.classList.add("dark");
+    const savedTheme = localStorage.getItem("portfolio_theme");
+    if (savedTheme) {
+      const isDark = savedTheme === "dark";
+      setDarkMode(isDark);
+      if (isDark) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    } else {
+      // Par défaut si aucune préférence sauvegardée
+      document.documentElement.classList.add("dark");
+    }
   }, []);
 
+  // 2. Basculer le thème et enregistrer dans le localStorage
   const toggleDarkMode = () => {
     const nextMode = !darkMode;
     setDarkMode(nextMode);
+
     if (nextMode) {
       document.documentElement.classList.add("dark");
+      localStorage.setItem("portfolio_theme", "dark");
     } else {
       document.documentElement.classList.remove("dark");
+      localStorage.setItem("portfolio_theme", "light");
     }
   };
 
@@ -77,7 +94,7 @@ export default function Navbar({ profileData, lang, setLang, t }: NavbarProps) {
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Language Switcher */}
+          {/* Sélecteur de Langue */}
           <button
             onClick={() => setLang(lang === "en" ? "fr" : "en")}
             className="flex items-center gap-1.5 px-3 py-2 rounded-full border text-xs font-semibold transition-all bg-slate-100 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700"
@@ -87,6 +104,7 @@ export default function Navbar({ profileData, lang, setLang, t }: NavbarProps) {
             <span>{lang.toUpperCase()}</span>
           </button>
 
+          {/* Bouton Thème Sombre / Clair */}
           <button
             onClick={toggleDarkMode}
             className="p-2.5 rounded-full border transition-all bg-slate-100 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700"
@@ -112,6 +130,7 @@ export default function Navbar({ profileData, lang, setLang, t }: NavbarProps) {
         </div>
       </nav>
 
+      {/* Menu Mobile */}
       {isMenuOpen && (
         <div className="mt-2 p-4 rounded-2xl border shadow-xl backdrop-blur-xl md:hidden bg-white/95 dark:bg-slate-900/95 border-slate-200 dark:border-slate-800">
           <div className="flex flex-col gap-3">
